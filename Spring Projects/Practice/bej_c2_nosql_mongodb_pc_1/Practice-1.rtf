@@ -1,0 +1,139 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2759
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red57\green192\blue38;\red170\green171\blue37;
+}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c25706\c77963\c19557;\cssrgb\c72331\c71682\c18599;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 test> use address_db\
+switched to db address_db\
+\
+address_db> db.createCollection(\cf3 "address"\cf2 )\
+\{ ok: \cf4 1\cf2  \}\
+\
+address_db>  db.address.insertMany([\
+...     \{\
+...         houseNo: \cf4 23\cf2 ,\
+...         streetName: \cf3 "Main\cf2  \cf3 Dave\cf2  \cf3 Street"\cf2 ,\
+...         city: \cf3 "New\cf2  \cf3 York"\cf2 ,\
+...         zipCode: \cf4 7002\cf2 \
+...     \},\
+...     \{\
+...         houseNo: \cf4 24\cf2 ,\
+...         streetName: \cf3 "Second\cf2  \cf3 Dave\cf2  \cf3 Street"\cf2 ,\
+...         city: \cf3 "Los\cf2  \cf3 Angeles"\cf2 ,\
+...         zipCode: \cf4 7003\cf2 \
+...     \},\
+...     \{\
+...         houseNo: \cf4 25\cf2 ,\
+...         streetName: \cf3 "Third\cf2  \cf3 Dave\cf2  \cf3 Street"\cf2 ,\
+...         city: \cf3 "Chicago"\cf2 ,\
+...         zipCode: \cf4 7004\cf2 \
+...     \},\
+...     \{\
+...          houseNo : \cf4 26\cf2 , \
+...          streetName : \cf3 'Fourth\cf2  \cf3 Dave\cf2  \cf3 Street'\cf2 , \
+...          city : \cf3 'Houston'\cf2 , \
+...          zipCode : \cf4 7005\cf2  \
+...      \}, \
+...      \{ \
+...          houseNo : \cf4 27\cf2 , \
+...          streetName : \cf3 'Fifth\cf2  \cf3 Dave\cf2  \cf3 Street'\cf2 , \
+...          city : \cf3 'Phoenix'\cf2 ,  \
+...          zipCode : \cf4 7006\cf2 \
+...      \}\
+... ]);\
+\{\
+  acknowledged: \cf4 true\cf2 ,\
+  insertedIds: \{\
+    \cf3 '0'\cf2 : ObjectId(\cf3 '65fbc4392f312fda90eef528'\cf2 ),\
+    \cf3 '1'\cf2 : ObjectId(\cf3 '65fbc4392f312fda90eef529'\cf2 ),\
+    \cf3 '2'\cf2 : ObjectId(\cf3 '65fbc4392f312fda90eef52a'\cf2 ),\
+    \cf3 '3'\cf2 : ObjectId(\cf3 '65fbc4392f312fda90eef52b'\cf2 ),\
+    \cf3 '4'\cf2 : ObjectId(\cf3 '65fbc4392f312fda90eef52c'\cf2 )\
+  \}\
+\}\
+address_db> db.address.find()\
+[\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef528'\cf2 ),\
+    houseNo: \cf4 23\cf2 ,\
+    streetName: \cf3 'Main Dave Street'\cf2 ,\
+    city: \cf3 'New York'\cf2 ,\
+    zipCode: \cf4 7002\cf2 \
+  \},\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef529'\cf2 ),\
+    houseNo: \cf4 24\cf2 ,\
+    streetName: \cf3 'Second Dave Street'\cf2 ,\
+    city: \cf3 'Los Angeles'\cf2 ,\
+    zipCode: \cf4 7003\cf2 \
+  \},\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef52a'\cf2 ),\
+    houseNo: \cf4 25\cf2 ,\
+    streetName: \cf3 'Third Dave Street'\cf2 ,\
+    city: \cf3 'Chicago'\cf2 ,\
+    zipCode: \cf4 7004\cf2 \
+  \},\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef52b'\cf2 ),\
+    houseNo: \cf4 26\cf2 ,\
+    streetName: \cf3 'Fourth Dave Street'\cf2 ,\
+    city: \cf3 'Houston'\cf2 ,\
+    zipCode: \cf4 7005\cf2 \
+  \},\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef52c'\cf2 ),\
+    houseNo: \cf4 27\cf2 ,\
+    streetName: \cf3 'Fifth Dave Street'\cf2 ,\
+    city: \cf3 'Phoenix'\cf2 ,\
+    zipCode: \cf4 7006\cf2 \
+  \}\
+]\
+\
+\
+ address_db>db.address.find(\{ \cf4 city\cf2 : \cf3 "Chicago"\cf2  \})\
+[\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef52a'\cf2 ),\
+    houseNo: \cf4 25\cf2 ,\
+    streetName: \cf3 'Third Dave Street'\cf2 ,\
+    city: \cf3 'Chicago'\cf2 ,\
+    zipCode: \cf4 7004\cf2 \
+  \}\
+]\
+\
+address_db> db.address.countDocuments(\{ \cf4 city\cf2 : \cf3 'New York'\cf2  \})\
+\cf4 1\
+\
+\cf2 address_db> db.address.find(\{ \cf4 city\cf2 : \{ \cf4 $in\cf2 : [\cf3 'Phoenix'\cf2 , \cf3 'New York'\cf2 , \cf3 'Chicago'\cf2 ] \} \})\
+[\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef528'\cf2 ),\
+    houseNo: \cf4 23\cf2 ,\
+    streetName: \cf3 'Main Dave Street'\cf2 ,\
+    city: \cf3 'New York'\cf2 ,\
+    zipCode: \cf4 7002\cf2 \
+  \},\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef52a'\cf2 ),\
+    houseNo: \cf4 25\cf2 ,\
+    streetName: \cf3 'Third Dave Street'\cf2 ,\
+    city: \cf3 'Chicago'\cf2 ,\
+    zipCode: \cf4 7004\cf2 \
+  \},\
+  \{\
+    _id: ObjectId(\cf3 '65fbc4392f312fda90eef52c'\cf2 ),\
+    houseNo: \cf4 27\cf2 ,\
+    streetName: \cf3 'Fifth Dave Street'\cf2 ,\
+    city: \cf3 'Phoenix'\cf2 ,\
+    zipCode: \cf4 7006\cf2 \
+  \}\
+]\
+\
+ db.address.deleteOne(\{ \cf4 city\cf2 : \cf3 'New York'\cf2  \})\
+\{ acknowledged: \cf4 true\cf2 , deletedCount: \cf4 0\cf2  \}\
+}
